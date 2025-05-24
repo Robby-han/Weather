@@ -3,3 +3,8 @@
   font-family: "albert";
   src: url("./assets/font/albert.ttf");
 }
+
+@font-face {
+  font-family: "overlock";
+  src: url("./assets/font/Overlock-Regular.ttf");
+}

@@ -8,14 +8,14 @@ function App() {
   return (
     <>
       <nav className="mt-4 flex justify-between">
-        <div className="ml-4">
+        <div className="ml-4 z-[99]">
           <img
             src={search}
             alt="search city"
             className="drop-shadow-[2px_3px_2px] cursor-pointer"
           />
         </div>
-        <div className="mr-4 flex gap-2">
+        <div className="mr-4 flex gap-2 z-[99]">
           <div>
             <div className="relative bg-white w-6 h-6 rounded-full shadow-md">
               <input
@@ -66,20 +66,146 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className="h-screen w-sceen rounded-full overflow-hidden">
-        <header className="bg-[url('./assets/img/snow.jpg')] w-full h-2/5 bg-cover bg-no-repeat bg-center rounded-bl-3xl rounded-br-3xl absolute top-0 -z-10">
+      <div className="h-70 overflow-hidden relative -top-10">
+        <header className="bg-[url('./assets/img/rain.jpg')] w-full h-full bg-cover bg-no-repeat bg-center rounded-bl-3xl rounded-br-3xl absolute top-0 -z-10">
           <div className="mt-16 ml-6">
             {/* today */}
-            <h1 className="text-white text-5xl font-[albert] text-shadow-md">Today</h1>
+            <h1 className="text-white text-5xl font-[albert] text-shadow-md">
+              Today
+            </h1>
             {/* city */}
-            <p className="text-white font-[albert] text-shadow-md">Jakarta, Indonesia</p>
+            <p className="text-white font-[albert] text-shadow-md">
+              Jakarta, Indonesia
+            </p>
             {/* temp */}
-            <h1 className="text-white text-7xl mt-3 font-[albert] text-shadow-md">19°C</h1>
+            <h1 className="text-white text-7xl mt-3 font-[albert] text-shadow-md">
+              19°C
+            </h1>
             {/* weather + icon */}
-            <h2 className="text-white font-[albert] mt-3 ml-3 text-shadow-md">Snow</h2>
+            <h2 className="text-white font-[albert] mt-3 ml-3 text-shadow-md">
+              Snow
+            </h2>
           </div>
         </header>
       </div>
+      <main className="mt-0 container w-full mx-auto sm:bg-black">
+        <h2 className="font-[overlock] text-lg ml-3">5 Day weather forcast</h2>
+        <div className="container w-[96%] mx-auto flex mt-3 gap-1 overflow-x-auto justify-center min-[525px]:gap-2 ">
+          {/* card fro 5 days */}
+          <div className="card h-48 min-w-15 w-20 bg-[url('./assets/img/rain.jpg')] bg-cover bg-center six rounded-full min-[252px]:w-25 min-[252px]:rounded-4xl">
+            <div className="mt-4 place-items-center">
+              {/* logo */}
+              <span className="text-white text-shadow-md/20">Logo</span>
+              {/* day */}
+              <h1 className="text-white my-2.5 font-bold text-shadow-md/20 text-sm ">
+                Today
+              </h1>
+              {/* temp feel */}
+              <h1 className="text-white font-bold text-shadow-md/20">15°C°</h1>
+              <hr className="h-0.5 w-4/5 bg-white text-white text-shadow-md/20" />
+              <h1 className="text-white font-bold text-shadow-md/20">17°C°</h1>
+              {/* weather */}
+              <p className="text-white text-[0.6rem] mt-3 text-shadow-md/20">
+                Rain
+              </p>
+            </div>
+          </div>
+          <div className="card h-48 min-w-15 w-20 bg-[url('./assets/img/snow.jpg')] bg-cover bg-center six rounded-full min-[252px]:w-25 min-[252px]:rounded-4xl">
+            <div className="mt-4 place-items-center">
+              <span className="text-white text-shadow-md/30">Logo</span>
+              {/* day */}
+              <h1 className="text-white my-2.5 font-bold text-shadow-md/20 text-sm ">
+                Thursday
+              </h1>
+              {/* temp feel */}
+              <h1 className="text-white font-bold text-shadow-md/20">15°C°</h1>
+              <hr className="h-0.5 w-4/5 bg-white text-white text-shadow-md/20" />
+              <h1 className="text-white font-bold text-shadow-md/20">17°C°</h1>
+              <p className="text-white text-[0.6rem] mt-3 text-shadow-md/20">
+                Snow
+              </p>
+            </div>
+          </div>
+          <div className="card h-48 min-w-15 w-20 bg-[url('./assets/img/mist.jpg')] bg-cover bg-center six rounded-full min-[252px]:w-25 min-[252px]:rounded-4xl">
+            <div className="mt-4 place-items-center">
+              <span className="text-white text-shadow-md/20">Logo</span>
+              {/* day */}
+              <h1 className="text-white my-2.5 font-bold text-shadow-md/20 text-sm ">
+                Friday
+              </h1>
+              {/* temp feel */}
+              <h1 className="text-white font-bold text-shadow-md/20">15°C°</h1>
+              <hr className="h-0.5 w-4/5 bg-white text-white text-shadow-md/20" />
+              <h1 className="text-white font-bold text-shadow-md/20">17°C°</h1>
+              <p className="text-white text-[0.6rem] mt-3 text-shadow-md/20">
+                Mist
+              </p>
+            </div>
+          </div>
+          <div className="card h-48 min-w-15 w-20 bg-[url('./assets/img/thunderstorm.jpg')] bg-cover bg-center six rounded-full min-[252px]:w-25 min-[252px]:rounded-4xl">
+            <div className="mt-4 place-items-center">
+              <span className="text-white text-shadow-md/20">Logo</span>
+              {/* day */}
+              <h1 className="text-white my-2.5 font-bold text-shadow-md/20 text-sm ">
+                Saturday
+              </h1>
+              {/* temp feel */}
+              <h1 className="text-white font-bold text-shadow-md/20">15°C°</h1>
+              <hr className="h-0.5 w-4/5 bg-white text-white text-shadow-md/20" />
+              <h1 className="text-white font-bold text-shadow-md/20">17°C°</h1>
+              <p className="text-white text-[0.6rem] mt-3 text-shadow-md/20">
+                Thunderstorm
+              </p>
+            </div>
+          </div>
+          <div className="card h-48 min-w-15 w-20 bg-[url('./assets/img/clear-sky.jpg')] bg-cover bg-center six rounded-full min-[252px]:w-25 min-[252px]:rounded-4xl">
+            <div className="mt-4 place-items-center">
+              <span className="text-white text-shadow-md/20">Logo</span>
+              {/* day */}
+              <h1 className="text-white my-2.5 font-bold text-shadow-md/20 text-sm ">
+                Sunday
+              </h1>
+              {/* temp feel */}
+              <h1 className="text-white font-bold text-shadow-md/20">15°C°</h1>
+              <hr className="h-0.5 w-4/5 bg-white text-white text-shadow-md/20" />
+              <h1 className="text-white font-bold text-shadow-md/20">17°C°</h1>
+              <p className="text-white text-[0.6rem] mt-3 text-shadow-md/20">
+                Clear sky
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div className="overflow-hidden">
+        <h2 className="font-[overlock] text-lg ml-3 mt-4"> Detail Weather :</h2>
+        <div className=" w-screen flex">
+          <div className="w-1/2 font-[albert] ml-10">
+            {/* temp feel */}
+            <h1 className="text-2xl mt-3 font-bold">26°C</h1>
+            <p className="text-sm text-slate-600">Temperature Felt</p>
+            {/* temp feel */}
+            <h1 className="text-2xl mt-3 font-bold">1007hPa</h1>
+            <p className="text-sm text-slate-600">Air Pressure</p>
+            {/* temp feel */}
+            <h1 className="text-2xl mt-3 font-bold">98%</h1>
+            <p className="text-sm text-slate-600">Humidity</p>
+          </div>
+          <div className="w-1/2 font-[albert] grid justify-end mr-10">
+            {/* temp feel */}
+            <h1 className="text-2xl mt-3 font-bold">4 Km</h1>
+            <p className="text-sm text-slate-600">Visibility</p>
+            {/* temp feel */}
+            <h1 className="text-2xl mt-3 font-bold">Very weak</h1>
+            <p className="text-sm text-slate-600">UV</p>
+            {/* temp feel */}
+            <h1 className="text-2xl mt-3 font-bold">6 km/h</h1>
+            <p className="text-sm text-slate-600">S</p>
+          </div>
+        </div>
+      </div>
+      <a href="#" className="flex justify-center font-bold my-5">
+        Robihan Ramadani
+      </a>
     </>
   );
 }
