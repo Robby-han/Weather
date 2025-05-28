@@ -17,7 +17,14 @@ const backgrounds = {
 };
 
 // search City
-function SearchCityButton({ isHidden, toggleSearch }) {
+function SearchCityButton({
+  isHidden,
+  setIsHidden,
+  toggleSearch,
+  inputValue,
+  handleValue,
+  setInputValue,
+}) {
   return (
     <div
       className={`search-city w-screen h-screen fixed bg-white top-0 z-[100] transition-all duration-300 dark:bg-slate-700 ${
@@ -27,12 +34,19 @@ function SearchCityButton({ isHidden, toggleSearch }) {
       <div className="flex mt-10 ml-5 justify-end">
         <input
           type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleValue}
           placeholder="Enter city name..."
           className="border-1 border-cyan-500 h-10 w-1/2 p-2.5 rounded-tl-2xl rounded-bl-2xl outline-cyan-500 focus:outline-cyan-500 focus:shadow-lg hover:shadow-lg transition-all dark:text-slate-100 dark:placeholder:text-slate-50 placeholder:text-gray-500"
         />
         <img
           src={look}
           alt="search"
+          onClick={() => {
+            localStorage.setItem("inputValue", inputValue);
+            setIsHidden("");
+          }}
           className="w-10 h-10 bg-sky-400 rounded-tr-3xl rounded-br-3xl p-2 mr-auto cursor-pointer"
         />
         <img
@@ -46,60 +60,110 @@ function SearchCityButton({ isHidden, toggleSearch }) {
       <div className="mt-10 ml-5 grid grid-cols-3 gap-1.5 dark:text-slate-100 text-sm md:text-md">
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("london");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           London
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("tokyo");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Tokyo
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("paris");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Paris
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("new_york");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           New York
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("singapore");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Singapore
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("barcelona");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Barcelona
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("dubai");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Dubai
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("los_anegles");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Los Angeles
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("madrid");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Madrid
         </a>
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setInputValue("amsterdam");
+            setIsHidden("");
+          }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
         >
           Amsterdam
@@ -217,7 +281,8 @@ function Header({
         </h1>
         {/* city */}
         <p className="text-white font-[albert] text-shadow-md sm:hidden">
-          {city}, {state}
+          {city}
+          {state ? ` , ${state}` : ``}
         </p>
         {/* temp */}
         <h1 className="text-white text-7xl mt-3 font-[albert] text-shadow-md lg:text-9xl">
@@ -370,6 +435,7 @@ function App() {
   const [location, setLocation] = useState(false); // location
   const [currentWeather, setCurrentWeather] = useState(null); // current weather
   const [fiveDays, setFiveDays] = useState(null); // 5 days weather
+  const [inputValue, setInputValue] = useState("london"); // Value input
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark" ||
       (!("theme" in localStorage) &&
@@ -393,10 +459,30 @@ function App() {
   }, [darkMode]);
 
   // get location
+  // Input Value
+  const handleValue = (ev) => {
+    if (ev.key === "Enter") {
+      const formattedValue = ev.target.value.split(" ").join("_").toLowerCase();
+      setInputValue(formattedValue); // Update state
+      localStorage.setItem("inputValue", formattedValue); // Persist value
+      setIsHidden("");
+    }
+  };
+
+  // Load stored value when the component mounts
+  useEffect(() => {
+    const savedValue = localStorage.getItem("inputValue");
+    if (savedValue) {
+      setInputValue(savedValue);
+    }
+  }, []);
+
+  // get latitude and longitude
   useEffect(() => {
     const fetchLocation = async () => {
       // city name, state code, country code, limit
-      const url = `http://api.openweathermap.org/geo/1.0/direct?q=london&limit=1&appid=${apiKey}`;
+      if (!inputValue) return;
+      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${apiKey}`;
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -408,9 +494,8 @@ function App() {
         console.error("Error fetching weather data:", error);
       }
     };
-
     fetchLocation();
-  }, []);
+  }, [inputValue]);
   useEffect(() => {
     if (location) {
       getCurrentWeather({
@@ -576,7 +661,14 @@ function App() {
     <>
       <nav className="mt-4 flex justify-between relative">
         <City toggleSearch={toggleSearch} />
-        <SearchCityButton toggleSearch={toggleSearch} isHidden={isHidden} />
+        <SearchCityButton
+          toggleSearch={toggleSearch}
+          isHidden={isHidden}
+          setIsHidden={setIsHidden}
+          handleValue={handleValue}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
         <div className="mr-4 flex gap-2 z-[99] xl:mr-20 ">
           <div>
             <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
@@ -586,7 +678,7 @@ function App() {
       </nav>
       <div className="h-70 overflow-hidden relative -mt-10 md:h-80 xl:h-85 dark:bg-slate-800 -z-10 transition-colors">
         <Header
-          state={location?.state || "lodaing.."}
+          state={location?.state || ""}
           city={currentWeather?.location || "loading..."}
           temp={currentWeather?.temp || "0"}
           desc={currentWeather?.desc || "loading"}
