@@ -8,3 +8,4 @@
   font-family: "overlock";
   src: url("./assets/font/Overlock-Regular.ttf");
 }
+@custom-variant dark (&:where(.dark, .dark *));
