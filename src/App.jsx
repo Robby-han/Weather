@@ -57,7 +57,9 @@ function App() {
     const fetchLocation = async () => {
       // city name, state code, country code, limit
       if (!inputValue) return;
-      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${import.meta.env.VITE_APP_ID}`;
+      const url = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${
+        import.meta.env.VITE_APP_ID
+      }`;
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -69,6 +71,7 @@ function App() {
         console.error("Error fetching weather data:", error);
       }
     };
+
     fetchLocation();
   }, [inputValue]);
   useEffect(() => {
@@ -88,7 +91,9 @@ function App() {
 
   // get current weather
   const getCurrentWeather = async ({ lat, lon }) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_APP_ID}${temperature}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${
+      import.meta.env.VITE_APP_ID
+    }${temperature}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -118,7 +123,9 @@ function App() {
 
   // get 5 days weather
   const fiveDaysWeather = async ({ lat, lon }) => {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_APP_ID}${temperature}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${
+      import.meta.env.VITE_APP_ID
+    }${temperature}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
