@@ -50,7 +50,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("london");
+            setInputValue("london", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -61,7 +61,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("tokyo");
+            setInputValue("tokyo", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -72,7 +72,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("paris");
+            setInputValue("paris", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -83,7 +83,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("new_york");
+            setInputValue("new_york", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -94,7 +94,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("singapore");
+            setInputValue("singapore", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -105,7 +105,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("barcelona");
+            setInputValue("barcelona", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -116,7 +116,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("dubai");
+            setInputValue("dubai", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -127,7 +127,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("los_anegles");
+            setInputValue("los_anegles", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -138,7 +138,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("madrid");
+            setInputValue("madrid", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"
@@ -149,7 +149,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("amsterdam");
+            setInputValue("amsterdam", inputValue);
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"

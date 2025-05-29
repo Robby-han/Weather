@@ -4,8 +4,6 @@ import { SearchCityButton, City, DarkModeToggle, TempToggle } from "./nav";
 import { Card, Details } from "./cards-&-detail";
 import "./App.css";
 
-const apiKey = "b9857fdac6f7641fd265794143562bc7";
-
 function App() {
   const [temperature, setTemperature] = useState("&units=metric");
   const [isHidden, setIsHidden] = useState(false); // hidden element
@@ -41,14 +39,14 @@ function App() {
     if (ev.key === "Enter") {
       const formattedValue = ev.target.value.split(" ").join("_").toLowerCase();
       setInputValue(formattedValue); // Update state
-      localStorage.setItem("inputValue", formattedValue); // Persist value
+      // localStorage.setItem("inputValue", formattedValue); // Persist value
       setIsHidden("");
     }
   };
 
   // Load stored value when the component mounts
   useEffect(() => {
-    const savedValue = localStorage.getItem("inputValue");
+    const savedValue = inputValue;
     if (savedValue) {
       setInputValue(savedValue);
     }
@@ -59,7 +57,7 @@ function App() {
     const fetchLocation = async () => {
       // city name, state code, country code, limit
       if (!inputValue) return;
-      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${apiKey}`;
+      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${import.meta.env.VITE_APP_ID}`;
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -90,7 +88,7 @@ function App() {
 
   // get current weather
   const getCurrentWeather = async ({ lat, lon }) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}${temperature}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_APP_ID}${temperature}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -120,7 +118,7 @@ function App() {
 
   // get 5 days weather
   const fiveDaysWeather = async ({ lat, lon }) => {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}${temperature}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_APP_ID}${temperature}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
