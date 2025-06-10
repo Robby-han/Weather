@@ -127,7 +127,7 @@ export function SearchCityButton({
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            setInputValue("los_anegles");
+            setInputValue("los_angeles");
             setIsHidden("");
           }}
           className="border-1 p-2 rounded-lg w-4/5 hover:border-slate-400 hover:text-slate-400"

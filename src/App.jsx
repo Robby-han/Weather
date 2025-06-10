@@ -41,7 +41,6 @@ function App() {
     if (ev.key === "Enter") {
       const formattedValue = ev.target.value.split(" ").join("_").toLowerCase();
       setInputValue(formattedValue); // Update state
-      localStorage.setItem("inputValue", formattedValue); // Persist value
       setIsHidden("");
     }
   };
