@@ -1,10 +1,10 @@
 const backgrounds = {
-  Rain: "/img/rain.jpg",
-  Snow: "/img/snow.jpg",
-  Mist: "/img/mist.jpg",
-  Thunderstorm: "/img/thunderstorm.jpg",
-  Clear: "/img/clear-sky.jpg",
-  Clouds: "/img/broken-cloud.jpg",
+  Rain: "./img/rain.jpg",
+  Snow: "./img/snow.jpg",
+  Mist: "./img/mist.jpg",
+  Thunderstorm: "./img/thunderstorm.jpg",
+  Clear: "./img/clear-sky.jpg",
+  Clouds: "./img/broken-cloud.jpg",
 };
 
 // cards
